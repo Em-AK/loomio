@@ -28,7 +28,7 @@ class API::ProfileController < API::RestfulController
   private
 
   def resource
-    current_user
+    @user || current_user
   end
 
   def current_user_params
