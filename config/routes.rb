@@ -40,6 +40,8 @@ Loomio::Application.routes.draw do
       post 'upload_photo/:kind', on: :member, action: :upload_photo
     end
 
+    resources :users, only: :show
+
     resources :memberships, only: [:index, :create, :update, :destroy] do
       collection do
         post :join_group
@@ -215,7 +217,7 @@ Loomio::Application.routes.draw do
       post :edit_description
       delete :leave_group
       get :members_autocomplete
-      get :previous_proposals, to: :show 
+      get :previous_proposals, action: :show
     end
 
     resources :motions,     only: [:index]
