@@ -69,7 +69,7 @@ Loomio::Application.routes.draw do
       get :pending, on: :collection
     end
 
-    resources :profile, only: [] do
+    resources :profile, only: [:show] do
       post :update_profile, on: :collection
       post :upload_avatar, on: :collection
       post :change_password, on: :collection
