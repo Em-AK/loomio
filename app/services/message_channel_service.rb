@@ -26,7 +26,6 @@ class MessageChannelService
   end
 
   def self.subscribe_to_notifications_for(user)
-    raise AccessDeniedError.new unless current_user.ability.can? :get_notifications_for, user
     PrivatePub.subscription(channel: "/notifications/#{user.id}")
   end
 
