@@ -127,6 +127,10 @@ class Ability
       end
     end
 
+    can :show, User do |user|
+      user.active?
+    end
+
     can :deactivate, User do |user_to_deactivate|
       not user_to_deactivate.adminable_groups.published.any? { |g| g.admins.count == 1 }
     end

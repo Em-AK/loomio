@@ -34,7 +34,7 @@ Loomio::Application.routes.draw do
   end
 
   namespace :api, path: '/api/v1', defaults: {format: :json} do
-    resources :groups, only: [:show, :create, :update] do
+    resources :groups, only: [:show, :create, :update, :index] do
       get :subgroups, on: :member
       patch :archive, on: :member
       post 'upload_photo/:kind', on: :member, action: :upload_photo

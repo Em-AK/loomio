@@ -34,6 +34,11 @@ class Group < ActiveRecord::Base
 
   scope :categorised_any, -> { where('groups.category_id IS NOT NULL') }
   scope :in_category, -> (category) { where(category_id: category.id) }
+  scope :with_memberships_for, -> (user) { joins("LEFT OUTER JOIN memberships m#{user.id}
+                                                  ON m#{user.id}.group_id = groups.id
+                                                  AND m#{user.id}.user_id = #{user.id}")}
+  scope :visible_to, -> (user) {  with_memberships_for(user).where("is_visible_to_public = 't' OR m#{user.id}.id IS NOT NULL") }
+  scope :with_member, -> (user) { with_memberships_for(user).where("m#{user.id}.id IS NOT NULL") }
 
   scope :archived, lambda { where('archived_at IS NOT NULL') }
   scope :published, lambda { where(archived_at: nil) }
