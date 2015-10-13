@@ -9,8 +9,8 @@ class API::MessageChannelController < API::RestfulController
   end
 
   def subscribe_user
-    @subscriptions = current_user.groups.map { |group| MessageChannelService.subscribe_to(user: current_user, channel: channel_for(group)) }
-    @subscriptions <<                                  MessageChannelService.subscribe_to(user: current_user, channel: "/notifications-#{current_user.id}")
+    @subscriptions = current_user.groups.map { |group| MessageChannelService.subscribe_to(user: current_user, model: group) }
+    @subscriptions <<                                  MessageChannelService.subscribe_to_notifications_for(current_user)
     respond_with_subscriptions
   end
 
@@ -20,7 +20,4 @@ class API::MessageChannelController < API::RestfulController
     render json: @subscriptions, root: false
   end
 
-  def channel_for(model)
-    "/#{model.class.to_s.downcase}-#{model.key}"
-  end
 end
