@@ -1,0 +1,5 @@
+.loading-wrapper.container.main-container
+  %loading{ng-if: '!userPage.user'}
+  %main.user-page{ng-if: 'userPage.user'}
+    .row
+      {{userPage.user.name}}
