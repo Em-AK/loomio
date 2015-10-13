@@ -327,6 +327,11 @@ label.label-with-details{
   @include boxLarge;
 }
 
+.lmo-box--featured {
+  text-align: center;
+  @include boxFeatured;
+}
+
 .lmo-rounded-corners {
   @include roundedCorners;
 }

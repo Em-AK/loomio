@@ -72,7 +72,7 @@ angular.module('loomioApp').controller 'ApplicationController', ($scope, $filter
     {path: '/g/:key/previous_proposals', component: 'previousProposalsPage'},
     {path: '/g/:key', component: 'groupPage' },
     {path: '/g/:key/:stub', component: 'groupPage' }
-    {path: '/u/key', component: 'userPage' }
+    {path: '/u/:key', component: 'userPage' }
     {path: '/u/:key/:stub', component: 'userPage' }
   ])
 
