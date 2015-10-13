@@ -11,5 +11,5 @@
         %h2.lmo-h2.user-page__groups{translate: 'common.groups'}
         .user-page__groups{ng-repeat: 'group in userPage.user.groups() | orderBy: "fullName" track by group.id'}
           %a{lmo-href-for: 'group'} {{group.fullName}}
-        %loading{ng-if: 'userPage.loadGroupsExecuting'}
+        %loading{ng-if: 'userPage.loadGroupsForExecuting'}
       .clearfix
