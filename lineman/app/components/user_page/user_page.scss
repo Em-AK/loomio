@@ -1,0 +1,24 @@
+.user-page {
+  margin: 0px auto;
+  max-width: $main-max-width;
+  .align-center { text-align: center; }
+}
+
+.user-page__name {
+  @include fontHelveticaBold;
+  @include fontLarge;
+  margin: 0;
+}
+
+.user-page__profile {
+  @include card;
+}
+
+.user-page__left {
+  float: left;
+  padding-right: 20px;
+}
+
+.user-page__right {
+  float: left;
+}

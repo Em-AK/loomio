@@ -1,5 +1,14 @@
 .loading-wrapper.container.main-container
   %loading{ng-if: '!userPage.user'}
-  %main.user-page{ng-if: 'userPage.user'}
-    .row
-      {{userPage.user.name}}
+  %main.user-page.main-container{ng-if: 'userPage.user'}
+    .user-page__profile
+      .user-page__left
+        %user_avatar{user: 'userPage.user', size: 'large'}
+      .user-page__right
+        %h2.user-page__name {{userPage.user.name}}
+        %h4.user-page__username @{{userPage.user.username}}
+
+        %h2.lmo-h2.user-page__groups{translate: 'common.groups'}
+        .user-page__groups{ng-repeat: 'group in userPage.user.groups()'}
+          %a{lmo-href-for: 'group'} {{group.fullName}}
+      .clearfix
