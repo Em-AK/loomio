@@ -30,6 +30,12 @@ describe API::ProfileController do
       expect(json['users'][0]['name']).to eq another_user.name
     end
 
+    it 'can fetch a user by username' do
+      get :show, id: another_user.username, format: :json
+      json = JSON.parse(response.body)
+      expect(json['users'][0]['username']).to eq another_user.username
+    end
+
     it 'does not return a deactivated user' do
       another_user.update deactivated_at: 1.day.ago
       get :show, id: another_user.key, format: :json
