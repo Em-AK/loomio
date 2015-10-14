@@ -22,10 +22,6 @@ class API::GroupsController < API::RestfulController
 
   private
 
-  def visible_records
-    resource_class.visible_to(current_user)
-  end
-
   def ensure_photo_params
     params.require(:file)
     raise ActionController::UnpermittedParameters.new([:kind]) unless ['logo', 'cover_photo'].include? params.require(:kind)

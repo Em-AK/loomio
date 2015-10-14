@@ -26,7 +26,7 @@ class MessageChannelService
   end
 
   def self.subscribe_to_notifications_for(user)
-    PrivatePub.subscription(channel: "/notifications/#{user.id}")
+    PrivatePub.subscription(channel: channel_for_notifications(user.id))
   end
 
   def self.can_subscribe?(user:, model:)
@@ -49,13 +49,17 @@ class MessageChannelService
     end
   end
 
+  def self.channel_for_notifications(user_id)
+    "/notifications-#{user_id}"
+  end
+
   def self.publish_event(event)
     return unless channel = channel_for_event(event)
     publish channel, EventSerializer.new(event).as_json
   end
 
   def self.publish_notification(notification)
-    publish "/notifications-#{notification.user_id}", NotificationSerializer.new(notification).as_json
+    publish channel_for_notifications(notification.user_id), NotificationSerializer.new(notification).as_json
   end
 
   def self.publish(channel, data)
