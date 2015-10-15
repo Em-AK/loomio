@@ -17,7 +17,7 @@ describe 'Profile', ->
       expect(profileHelper.emailInput().getAttribute('value')).toContain('ferris@loomio.org')
 
   describe 'visiting a user profile', ->
-    iit 'can display a user and his/her groups', ->
+    it 'can display a user and his/her groups', ->
       profileHelper.visitUserPage('jennifergrey')
       expect(profileHelper.nameText()).toContain('Jennifer Grey')
       expect(profileHelper.usernameText()).toContain('@jennifergrey')
